@@ -1,0 +1,1 @@
+# global-impact-spring-application
