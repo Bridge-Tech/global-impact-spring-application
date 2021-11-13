@@ -10,6 +10,8 @@ public interface PersonRepository extends JpaRepository<Person, Long>{
 
 	Optional<Person> findBycpf(String cpf);
 
+	Optional<Person> findByUser(String username);
+
 
 
 }

@@ -9,20 +9,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.fiap.iDoei.model.Person;
 import br.com.fiap.iDoei.repository.PersonRepository;
-@Controller
+import br.com.fiap.iDoei.service.AuthenticationService;
 
+@Controller
 public class PersonController {
 	
 	@Autowired
 	private PersonRepository repository;
-	@GetMapping("/person/register")
+	
+	@RequestMapping("/person/register")
 	public String create(Person person) {
 		return"registerPerson";
 	}
+	
 	@PostMapping("/person/register")
 	public String save(@Valid Person person, BindingResult result,  RedirectAttributes redirect) {
 		if(result.hasErrors()) {
@@ -40,11 +44,14 @@ public class PersonController {
 			return "registerPerson";
 		}
 		
+		person.setPassword(AuthenticationService.getPasswordEncoder().encode(person.getPassword()));
+		
 		person.setFullAddress("R." + person.getAddress() + 
 				"- " + person.getDistrict() + 
 				"- Nº " + person.getNumber().toString() +
 				"- "+ person.getComplement()
 				);
+		
 		System.out.println("Tudo certo salvando User");
 		repository.save(person);
 		
