@@ -6,18 +6,20 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import br.com.fiap.iDoei.service.AuthenticationService;
+
 
 @Configuration
 public class SecuriryConfiguration extends WebSecurityConfigurerAdapter{
 	
-//	@Autowired
-//	private AuthenticationService autheticationService;
-//	//autenticação
-//	@Override
-//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		auth.userDetailsService(autheticationService)
-//		.passwordEncoder(AuthenticationService.getPasswordEncoder());
-//	}
+	@Autowired
+	private AuthenticationService autheticationService;
+	//autenticação
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(autheticationService)
+		.passwordEncoder(AuthenticationService.getPasswordEncoder());
+	}
 	//autorização
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {

@@ -2,7 +2,7 @@ CREATE TABLE person(
 	id INT PRIMARY KEY auto_increment,
 	number INT,
 	user VARCHAR(100),
-	cpf VARCHAR(14),
+	cpf VARCHAR(70),
 	fullAddress VARCHAR(500),
 	name VARCHAR(100),
 	address VARCHAR(200),
@@ -12,7 +12,7 @@ CREATE TABLE person(
 	
 );
 
-INSERT INTO person (number, user, cpf, fullAddress, name, address, complement, district, password) VALUES(20,'Crocha','xxxxxxxxxxxxxx','R. Candido Lacerda - JD Paulista - N 20 - APTO 02', 'Caio Rocha','R. Candido Lacerda','APTO 02', 'JD Paulista','123456789');
+INSERT INTO person (number, user, cpf, fullAddress, name, address, complement, district, password) VALUES(20,'Crocha','$2a$12$JViw01IP09.qfxoYvTguGOQh6RTjHPsCMwI/yuAu5oxGNR15Y.DeC','R. Candido Lacerda - JD Paulista - N 20 - APTO 02', 'Caio Rocha','R. Candido Lacerda','APTO 02', 'JD Paulista','$2a$12$Hm.G79mP/BEQ4tTgRcM.1OvVGhx.AZOAZmhhMtBUhsnzihBMUrkeq');
 
 
 
