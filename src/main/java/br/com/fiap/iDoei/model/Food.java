@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
@@ -15,4 +16,5 @@ public class Food {
 	private String name;
 	private String type;
 	private Long amount;
+	private Boolean isSelected;
 }

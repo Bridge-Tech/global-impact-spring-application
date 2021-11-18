@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymeleaf.org">
 	<head>
 		<title>iDoei</title>
 		<link rel="stylesheet"
@@ -9,34 +9,37 @@
 			rel="stylesheet"
 			integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
 			crossorigin="anonymous">
-		<link rel="stylesheet" type="text/css" th:href="@{~/css/home.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{~/css/food.css}">
 		<meta charset="UTF-8">
 	</head>
 	<body>
-		<form th:action="@{/food/register}" method="post" th:object="${food}">
-			<div class="card">
-				<div class="row g-2">
-					<div class="col-md-4">
-						<label for="floatingInputName" class="form-label">Alimento</label>
-						<div class=" col-md-12">
-							<input type="text" class="form-control" id="floatingInputName"
-								placeholder="Name" >
-						</div>
-					</div>
-					<div class="col-md-4">
-						<label for="floatingInputAmount" class="form-label">Quantidade</label>
-						<div class=" col-md-12">
-							<input type="number" class="form-control" id="floatingInputAmount"
-								placeholder="Ex:1" >
-						</div>
-					</div>
-					<div class="btn-group d-grid gap-2 d-md-block">
-						<button class="btn btn-success btn-sm" type="submit">Concluir Cadastro</button>
-						<a href="/index" type="button" class="btn btn-info btn-sm"><i class="bi bi-arrow-left-circle"></i> Voltar</a>
-					</div>
-				</div>
+		<div class="card">
+			<table class="table">
+			  <thead>
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Nome</th>
+			      <th scope="col">Tipo</th>
+			      <th scope="col">Quantidade</th>
+			      <th scope="col">Selecionar</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr th:each=" food : ${foods}">
+			      <th th:text="${food.id}"></th>
+			      <td th:text="${food.name}"></td>
+			      <td th:text="${food.type}"></td>
+			      <td th:text="${food.amount}"></td>
+			      <td>
+			      	<a th:if="${food.isSelected == true}" class="btn btn-danger p-1 m-1" th:href="${'/food/drop/'+food.id}" type="button">Selecionado</a><a  th:if="${food.isSelected == false}" class="btn btn-info p-1 m-1" th:href="${'/food/hold/'+food.id}" type="button">Selecionar</a>
+			      </td>
+			    </tr>
+			  </tbody>
+			</table>
+			<div>
+				<a href="/donate" type="button" class="btn btn-success">Doação</a>
 			</div>
 			
-		</form>
+		</div>
 	</body>
 </html>

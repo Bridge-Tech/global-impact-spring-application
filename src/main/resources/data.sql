@@ -1,3 +1,13 @@
+CREATE TABLE food(
+	id INT PRIMARY KEY auto_increment,
+	name VARCHAR (100),
+	type VARCHAR(30),
+	amount INT,
+	is_Selected BOOLEAN 
+);
+INSERT INTO food(name,type,amount,is_Selected) VALUES('Abacate','Perecivel',20,FALSE);
+INSERT INTO food(name,type,amount,is_Selected) VALUES('Enlatado de Milho','Perecivel',3,FALSE);
+
 CREATE TABLE person(
 	id INT PRIMARY KEY auto_increment,
 	number INT,
