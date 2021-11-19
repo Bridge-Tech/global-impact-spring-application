@@ -54,7 +54,7 @@ public class PersonController {
 		System.out.println("Tudo certo salvando User");
 		repository.save(person);
 		
-		return "redirect:login";
+		return "redirect:/login";
 	}
 	
 	

@@ -17,4 +17,5 @@ public class Food {
 	private String type;
 	private Long amount;
 	private Boolean isSelected;
+	private Long personId;
 }

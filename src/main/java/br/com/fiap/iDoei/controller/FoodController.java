@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.fiap.iDoei.exception.FoodNotFoundException;
 import br.com.fiap.iDoei.model.Food;
+import br.com.fiap.iDoei.model.Person;
 import br.com.fiap.iDoei.repository.FoodRepository;
 
 @Controller
@@ -34,19 +35,21 @@ public class FoodController {
 	
 	@GetMapping("/food/register")
 	public String index(Food food) {
-		
-		
-		
 		return "registerFood";
 	}
 	
 	@PostMapping("/food/register")
-	public String save(@Valid Food food, BindingResult result,  RedirectAttributes redirect) {
+	public String save(@Valid Food food, BindingResult result,  RedirectAttributes redirect, Authentication auth) {
 		if(result.hasErrors()) {
 			System.out.println("Não salvando Nova Comida ...");
 			return "registerFood";
 		}
 		food.setIsSelected(false);
+		
+		Person person = (Person) auth.getPrincipal();
+		
+		
+		food.setPersonId(person.getId());
 		System.out.println("Tudo certo salvando Comida");
 		repository.save(food);
 		
@@ -76,21 +79,21 @@ public class FoodController {
 		}
 		
 		repository.save(food);
-		return "redirect:/food";
+		return "redirect:/donate";
 	}
 	
-	@GetMapping("/food/drop/{id}")
-	private String drop(@PathVariable Long id, Authentication auth) {
-		Optional<Food> optional = repository.findById(id);
-		
-		if (optional.isEmpty()) {
-			throw new FoodNotFoundException("Comida não encontrado!");
-		}
-		Food food = optional.get();
-		if(food.getIsSelected()) {
-			food.setIsSelected(false);
-		}
-		repository.save(food);
-		return "redirect:/food";
-	}
+//	@GetMapping("/food/drop/{id}")
+//	private String drop(@PathVariable Long id, Authentication auth) {
+//		Optional<Food> optional = repository.findById(id);
+//		
+//		if (optional.isEmpty()) {
+//			throw new FoodNotFoundException("Comida não encontrado!");
+//		}
+//		Food food = optional.get();
+//		if(food.getIsSelected()) {
+//			food.setIsSelected(false);
+//		}
+//		repository.save(food);
+//		return "redirect:/food";
+//	}
 }
