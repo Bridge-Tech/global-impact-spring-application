@@ -12,3 +12,6 @@
 
 
 Link do YT: https://www.youtube.com/watch?v=cfbLCeDp6oU
+
+Link do Reposiorio utilizado na entrega de Devops (Mesmo codigo fonte, somente repositorios diferentes)
+https://github.com/Bridge-Tech/global-webapp
